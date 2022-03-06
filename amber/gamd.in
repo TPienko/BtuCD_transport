@@ -1,0 +1,39 @@
+NPT simulation
+ &cntrl
+  imin     = 0, ! run MD
+  irest    = 0, ! no restart prev sim
+  ntx      = 1, ! read coor
+  ntt      = 3, ! Langevin
+  ig       = -1, 
+  gamma_ln = 1.0, ! damping
+  ntb      = 2, ! periodic + NPT
+  ntp      = 3, ! semi-isotropic press
+  barostat = 2, ! Monte Carlo barostat 
+  pres0    = 1.01325 ! 1 atm
+  cut      = 10.0, ! cutoff
+  ntc      = 2, ! shake
+  ntf      = 2, ! shake
+  tempi    = 310.15, ! initial temp
+  temp0    = 310.15,  ! thermostat temp
+  nstlim   = 35000000, ! number of MD steps
+  dt       = 0.002, ! timestep 2fs
+  ioutfm   = 1, ! binary netcdf traj
+  ntpr     = 2500, ! energy info freq
+  ntwx     = 2500, ! traj write freq
+  ntwr     = 10000, ! restart write freq
+  iwrap    = 1, 
+  csurften = 3,
+  nmropt   = 1
+
+  igamd = 3, iE = 2, iEP = 2, iED = 2, irest_gamd = 1,
+  ntcmd = 0, nteb = 0, ntave = 200000,
+  ntcmdprep = 0, ntebprep = 0,
+  sigma0P = 20.0, sigma0D = 20.0,
+/
+
+&wt type='DUMPFREQ', istep1=500 /
+&wt type='END' /
+DISANG=restraint_us.dat
+DUMPAVE=open_eq.dat
+LISTIN=POUT
+LISTOUT=POUT
